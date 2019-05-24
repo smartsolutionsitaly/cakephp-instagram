@@ -88,12 +88,12 @@ class InstagramClient
      * Gets media objects of the user from Instagram.
      * @param string $token The access token.
      * @param int $count The max number of retrieved media.
-     * @return array Returns an array of media objects.
+     * @return array An array of media objects.
      */
-    public function images(string $token, int $count = 6): array
+    public function getImages(string $token, int $count = 6): array
     {
         $res = [];
-        $medias = $this->media($token, $count);
+        $medias = $this->getMedia($token, $count);
 
         if ($medias) {
             foreach ($medias as $media) {
@@ -113,9 +113,9 @@ class InstagramClient
      * Gets media entries of the user from Instagram.
      * @param string $token The access token.
      * @param int $count The max number of retrieved media.
-     * @return array Returns an array of medias or the error message.
+     * @return array An array of medias or the error message.
      */
-    public function media(string $token, int $count = 6): array
+    public function getMedia(string $token, int $count = 6): array
     {
         try {
             $res = $this->_client->get('/v1/users/self/media/recent', [

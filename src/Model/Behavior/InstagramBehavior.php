@@ -49,14 +49,15 @@ class InstagramBehavior extends Behavior
      * Finder for Instagram images.
      * Adds a formatter to the and replaces the field containing token with the images.
      * @param Query $query The query object.
-     * @param array $options Query options. May contains "count" and "field" elements.
+     * @param array $options Query options. May contains "count", "format" and "field" elements.
      * @return Query The query object.
      */
-    public function findInstagram(Query $query, array $options): Query
+    public function findInstagram(Query $query, array $options)
     {
         $options = $options + [
-                'count' => $this->getConfig('count'),
-                'field' => $this->getConfig('field')
+                'count' => (int)$this->getConfig('count'),
+                'field' => (string)$this->getConfig('field'),
+                'format' => true
             ];
 
         return $query
@@ -65,7 +66,11 @@ class InstagramBehavior extends Behavior
 
                 return $results->map(function ($row) use ($options, $client) {
                     if (!empty($row[$options['field']])) {
-                        $row[$options['field']] = $client->images((string)$row[$options['field']], (int)$options['count']);
+                        if ($options['format']) {
+                            $row[$options['field']] = $client->getImages((string)$row[$options['field']], (int)$options['count']);
+                        } else {
+                            $row[$options['field']] = $client->getMedia((string)$row[$options['field']], (int)$options['count']);
+                        }
                     }
 
                     return $row;
