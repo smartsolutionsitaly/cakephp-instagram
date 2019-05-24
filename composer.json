@@ -1,0 +1,45 @@
+{
+  "name": "smartsolutionsitaly/cakephp-instagram",
+  "description": "Instagram client for CakePHP",
+  "keywords": [
+    "cakephp",
+    "color",
+    "datasource",
+    "database"
+  ],
+  "type": "cakephp-plugin",
+  "license": "MIT",
+  "require": {
+    "php": "^7.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "cakephp/cakephp": "^3.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "SmartSolutionsItaly\\CakePHP\\Instagram\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SmartSolutionsItaly\\CakePHP\\Instagram\\Test\\": "tests",
+      "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+    }
+  },
+  "homepage": "https://github.com/smartsolutionsitaly/cakephp-instagram",
+  "authors": [
+    {
+      "name": "Lucio Benini",
+      "email": "dev@smartsolutions.it",
+      "homepage": "https://smartsolutions.it",
+      "role": "Web Developer"
+    }
+  ],
+  "support": {
+    "email": "info@smartsolutions.it",
+    "issues": "https://github.com/smartsolutionsitaly/cakephp-instagram/issues",
+    "wiki": "https://github.com/smartsolutionsitaly/cakephp-instagram/wiki",
+    "source": "https://github.com/smartsolutionsitaly/cakephp-instagram"
+  }
+}
