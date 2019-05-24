@@ -3,9 +3,8 @@
   "description": "Instagram client for CakePHP",
   "keywords": [
     "cakephp",
-    "color",
-    "datasource",
-    "database"
+    "instagram",
+    "client"
   ],
   "type": "cakephp-plugin",
   "license": "MIT",
