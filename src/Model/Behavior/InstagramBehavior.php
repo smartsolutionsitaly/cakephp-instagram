@@ -67,10 +67,12 @@ class InstagramBehavior extends Behavior
                 return $results->map(function ($row) use ($options, $client) {
                     if (!empty($row[$options['field']])) {
                         if ($options['format']) {
-                            $row[$options['field']] = $client->getImages((string)$row[$options['field']], (int)$options['count']);
+                            $res = $client->getImages((string)$row[$options['field']], (int)$options['count']);
                         } else {
-                            $row[$options['field']] = $client->getMedia((string)$row[$options['field']], (int)$options['count']);
+                            $res = $client->getMedia((string)$row[$options['field']], (int)$options['count']);
                         }
+                        
+                        $row[$options['field']] = $res;
                     }
 
                     return $row;
