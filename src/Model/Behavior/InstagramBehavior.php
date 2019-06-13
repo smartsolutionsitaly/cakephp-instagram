@@ -21,8 +21,10 @@
 namespace SmartSolutionsItaly\CakePHP\Instagram\Model\Behavior;
 
 use Cake\Collection\CollectionInterface;
+use Cake\Event\Event;
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
+use Cake\Validation\Validator;
 use SmartSolutionsItaly\CakePHP\Instagram\Http\Client\InstagramClient;
 
 /**
@@ -41,6 +43,26 @@ class InstagramBehavior extends Behavior
         'count' => 9,
         'field' => 'instagram'
     ];
+
+    /**
+     * The Model.buildValidator event is fired when $name validator is created.
+     * Behaviors, can use this hook to add in validation methods.
+     * @param Event $event The event.
+     * @param Validator $validator The validator.
+     * @param string $name Validation's name.
+     * @return Validator The validator.
+     */
+    public function buildValidator(Event $event, Validator $validator, $name)
+    {
+        if ($name === 'default') {
+            $validator
+                ->scalar((string)$this->getConfig('field'))
+                ->maxLength((string)$this->getConfig('field'), 255)
+                ->allowEmptyString((string)$this->getConfig('field'));
+        }
+
+        return $validator;
+    }
 
     /**
      * Finder for Instagram images.
